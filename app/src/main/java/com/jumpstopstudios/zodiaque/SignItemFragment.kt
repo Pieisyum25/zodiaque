@@ -9,6 +9,19 @@ import com.jumpstopstudios.zodiaque.databinding.FragmentSignItemBinding
 
 class SignItemFragment : Fragment() {
 
+    companion object {
+
+        fun newInstance(sign: String): SignItemFragment {
+            val fragment = SignItemFragment()
+
+            val args = Bundle()
+            args.putString("sign", sign)
+            fragment.arguments = args
+
+            return fragment
+        }
+    }
+
     private var _binding: FragmentSignItemBinding? = null
     private val binding get() = _binding!!
 
@@ -24,6 +37,8 @@ class SignItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.signItemTitle.text = arguments?.getString("sign")
     }
 
     override fun onDestroyView() {

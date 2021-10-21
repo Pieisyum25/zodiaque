@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
+import com.jumpstopstudios.zodiaque.viewpager.SignPageChangeCallback
+import com.jumpstopstudios.zodiaque.viewpager.SignPageTransformer
+import com.jumpstopstudios.zodiaque.viewpager.SignPageWidthItemDecoration
+import com.jumpstopstudios.zodiaque.viewpager.SignPagerAdapter
 
 class SignListFragment : Fragment() {
 
@@ -28,6 +32,24 @@ class SignListFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.signListViewpager.apply {
+            val signs = resources.getStringArray(R.array.signs)
+            val pageCount = signs.size
+            val paddingPageCount = 2
+
+            offscreenPageLimit = paddingPageCount - 1
+
+            // Infinitely loop pages:
+            adapter = SignPagerAdapter(this@SignListFragment.requireActivity(), signs, paddingPageCount)
+            setCurrentItem(paddingPageCount, false)
+            val callback = SignPageChangeCallback(this, pageCount, paddingPageCount)
+            registerOnPageChangeCallback(callback)
+
+            // Transform and animate pages:
+            setPageTransformer(SignPageTransformer(callback))
+            addItemDecoration(SignPageWidthItemDecoration())
+        }
     }
 
     /**
