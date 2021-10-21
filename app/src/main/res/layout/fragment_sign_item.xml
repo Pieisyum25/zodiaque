@@ -28,17 +28,17 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/sign_item_title"
+                android:id="@+id/sign_item_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/sign_card_content_margin"
                 tools:text="Aries" />
 
             <TextView
-                android:id="@+id/sign_item_body"
+                android:id="@+id/sign_item_footer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/filler" />
+                tools:text="@string/filler" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

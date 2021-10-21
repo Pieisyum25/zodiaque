@@ -5,17 +5,36 @@
 
     <!-- Signs -->
     <string-array name="signs">
-        <item>aries</item>
-        <item>taurus</item>
-        <item>gemini</item>
-        <item>cancer</item>
-        <item>leo</item>
-        <item>virgo</item>
-        <item>libra</item>
-        <item>scorpio</item>
-        <item>sagittarius</item>
-        <item>capricorn</item>
-        <item>aquarius</item>
-        <item>pisces</item>
+        <item>Aries</item>
+        <item>Taurus</item>
+        <item>Gemini</item>
+        <item>Cancer</item>
+        <item>Leo</item>
+        <item>Virgo</item>
+        <item>Libra</item>
+        <item>Scorpio</item>
+        <item>Sagittarius</item>
+        <item>Capricorn</item>
+        <item>Aquarius</item>
+        <item>Pisces</item>
+    </string-array>
+
+    <string name="sign_dates_range">%1$s %2$d - %3$s %4$d</string>
+
+    <!-- Months -->
+    <string-array name="months">
+        <item>_</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
     </string-array>
 </resources>

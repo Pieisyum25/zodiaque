@@ -1,12 +1,12 @@
 package com.jumpstopstudios.zodiaque
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+
+const val TAG = "Main"
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         // Navigation:
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container_main) as NavHostFragment
         navController = navHostFragment.navController
+        Log.d(TAG, "Finished Main onCreate")
     }
 
     override fun onSupportNavigateUp(): Boolean {

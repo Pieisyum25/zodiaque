@@ -1,11 +1,13 @@
 package com.jumpstopstudios.zodiaque
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
+import com.jumpstopstudios.zodiaque.model.SignItemDatasource
 import com.jumpstopstudios.zodiaque.viewpager.SignPageChangeCallback
 import com.jumpstopstudios.zodiaque.viewpager.SignPageTransformer
 import com.jumpstopstudios.zodiaque.viewpager.SignPageWidthItemDecoration
@@ -23,6 +25,7 @@ class SignListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignListBinding.inflate(inflater, container, false)
+        Log.d(TAG, "Finished List onCreateView")
         return binding.root
     }
 
@@ -32,9 +35,12 @@ class SignListFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "Started List onViewCreate")
 
         binding.signListViewpager.apply {
-            val signs = resources.getStringArray(R.array.signs)
+            Log.d(TAG, "Started List apply")
+            val signs = SignItemDatasource.loadSigns(context)
+            Log.d(TAG, "Finished List datasource load")
             val pageCount = signs.size
             val paddingPageCount = 2
 
@@ -49,7 +55,9 @@ class SignListFragment : Fragment() {
             // Transform and animate pages:
             setPageTransformer(SignPageTransformer(callback))
             addItemDecoration(SignPageWidthItemDecoration())
+            Log.d(TAG, "Finished List apply")
         }
+        Log.d(TAG, "Finished List onViewCreate")
     }
 
     /**
