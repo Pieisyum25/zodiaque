@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signListFragment">
+
+    <fragment
+        android:id="@+id/signListFragment"
+        android:name="com.jumpstopstudios.zodiaque.SignListFragment"
+        android:label="SignListFragment" >
+        <action
+            android:id="@+id/action_signListFragment_to_signDetailFragment"
+            app:destination="@id/signDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signDetailFragment"
+        android:name="com.jumpstopstudios.zodiaque.SignDetailFragment"
+        android:label="SignDetailFragment" >
+        <action
+            android:id="@+id/action_signDetailFragment_to_signListFragment"
+            app:destination="@id/signListFragment" />
+    </fragment>
+</navigation>
