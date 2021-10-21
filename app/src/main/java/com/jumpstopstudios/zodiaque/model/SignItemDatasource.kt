@@ -29,7 +29,7 @@ object SignItemDatasource {
 
         for (index in 0..11) {
             val name = names[index]
-            val imageResId = 0
+            val imageResId = res.getIdentifier("sign$index", "drawable", context.packageName)
 
             val dateRangeData = signDateRangesData[index]
             val startMonth = months[dateRangeData[0]]

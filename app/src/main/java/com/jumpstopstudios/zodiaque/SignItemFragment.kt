@@ -43,6 +43,7 @@ class SignItemFragment : Fragment() {
 
         val sign = arguments?.getParcelable<Sign>("sign")
         binding.signItemHeader.text = sign?.name
+        binding.signItemImage.setImageResource(sign!!.imageResId)
         binding.signItemFooter.text = sign?.datesRange
 
         binding.signItemCard.setOnClickListener {
