@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignItemBinding
 import com.jumpstopstudios.zodiaque.model.Sign
 
@@ -17,9 +18,7 @@ class SignItemFragment : Fragment() {
             val fragment = SignItemFragment()
 
             val args = Bundle()
-            args.putString("name", sign.name)
-            args.putInt("image_res_id", sign.imageResId)
-            args.putString("dates_range", sign.datesRange)
+            args.putParcelable("sign", sign)
             fragment.arguments = args
 
             return fragment
@@ -42,8 +41,15 @@ class SignItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.signItemHeader.text = arguments?.getString("name")
-        binding.signItemFooter.text = arguments?.getString("dates_range")
+        val sign = arguments?.getParcelable<Sign>("sign")
+        binding.signItemHeader.text = sign?.name
+        binding.signItemFooter.text = sign?.datesRange
+
+        binding.signItemCard.setOnClickListener {
+            Log.d(TAG, "Started Item onClick")
+            val action = SignListFragmentDirections.actionSignListFragmentToSignDetailFragment(sign!!)
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {
