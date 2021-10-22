@@ -53,7 +53,7 @@ class SignListFragment : Fragment() {
             registerOnPageChangeCallback(callback)
 
             // Transform and animate pages:
-            setPageTransformer(SignPageTransformer(callback))
+            setPageTransformer(SignPageTransformer(this, callback))
             addItemDecoration(SignPageWidthItemDecoration())
             Log.d(TAG, "Finished List apply")
         }

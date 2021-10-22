@@ -3,11 +3,11 @@ package com.jumpstopstudios.zodiaque.viewpager
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.jumpstopstudios.zodiaque.R
 
-class SignPageWidthItemDecoration(
-    private val pageWidthFactor: Double = 0.8
-) : RecyclerView.ItemDecoration() {
+class SignPageWidthItemDecoration : RecyclerView.ItemDecoration() {
 
     /**
      * The margin value to set on each side of the page to make it thinner.
@@ -18,7 +18,8 @@ class SignPageWidthItemDecoration(
         // If margin width not calculated, calculate it from the View width:
         if (horizontalMargin == -1){
             if (view.width == 0) fixLayoutSize(view, parent)
-            horizontalMargin = ((1 - pageWidthFactor) / 2 * view.width).toInt()
+            val cardView = view.findViewById<CardView>(R.id.sign_item_card)
+            horizontalMargin = ((cardView.width - cardView.height) / 2)
         }
         // Set the page's margins to make the page thinner:
         outRect.right = horizontalMargin

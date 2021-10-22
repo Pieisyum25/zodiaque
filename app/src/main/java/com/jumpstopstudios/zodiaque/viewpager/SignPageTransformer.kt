@@ -2,14 +2,16 @@ package com.jumpstopstudios.zodiaque.viewpager
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.jumpstopstudios.zodiaque.R
 import kotlin.math.abs
 
 class SignPageTransformer(
+    private val viewPager: ViewPager2,
     private val pageChangeCallback: SignPageChangeCallback,
-    private val pageTranslationFactorX: Double = 0.45,
+    private val pageTranslationFactorX: Double = 0.8,
     private val pageTranslationFactorY: Double = 0.15,
     private val pageTranslationYSymmetrical: Boolean = true,
     private val pageScaleFactor: Double = 0.75,
@@ -18,10 +20,11 @@ class SignPageTransformer(
 
         override fun transformPage(page: View, position: Float){
             val absPosition = abs(position)
+            val cardView = page.findViewById<CardView>(R.id.sign_item_card)
 
             // Translate off-centre pages:
             // Pages further from the centre are translated more towards the centre.
-            page.translationX = (page.width * pageTranslationFactorX * -position).toFloat()
+            page.translationX = ((viewPager.width - cardView.height * pageTranslationFactorX) * -position).toFloat()
             if (pageTranslationYSymmetrical) page.translationY = (page.height * pageTranslationFactorY * -absPosition).toFloat() // bent diagonal
             else page.translationY = (page.height * pageTranslationFactorY * -position).toFloat() // full diagonal, cool effect
 
