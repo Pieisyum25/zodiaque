@@ -33,8 +33,6 @@ class SignItemFragment : Fragment() {
     private var _binding: FragmentSignItemBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewPager: ViewPager2
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,8 +40,6 @@ class SignItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignItemBinding.inflate(inflater, container, false)
-        viewPager = activity?.findViewById(R.id.sign_list_viewpager)!!
-
         return binding.root
     }
 
@@ -64,6 +60,7 @@ class SignItemFragment : Fragment() {
             Log.d(TAG, "Started Item onClick")
 
             val page = binding.root.parent as FrameLayout
+            val viewPager = activity?.findViewById<ViewPager2>(R.id.sign_list_viewpager)!!
             val position = (viewPager[0] as RecyclerView).getChildAdapterPosition(page)
 
             // If in centre of screen, navigate to detail fragment:
