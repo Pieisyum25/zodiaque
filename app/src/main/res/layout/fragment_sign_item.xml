@@ -34,10 +34,10 @@
 
                 <TextView
                     android:id="@+id/sign_item_header"
+                    style="@style/Widget.Zodiaque.TextView.Sign.Header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/sign_card_content_margin"
-                    android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -45,7 +45,7 @@
 
                 <ImageView
                     android:id="@+id/sign_item_image"
-                    style="@style/GlowingIcon"
+                    style="@style/glowingIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
@@ -57,9 +57,9 @@
 
                 <TextView
                     android:id="@+id/sign_item_footer"
+                    style="@style/Widget.Zodiaque.TextView.Sign.Footer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

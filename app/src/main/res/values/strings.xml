@@ -20,6 +20,7 @@
     </string-array>
 
     <string name="sign_dates_range">%1$s %2$d - %3$s %4$d</string>
+    <string name="sign_prompt">Choose a Sign</string>
 
     <!-- Months -->
     <string-array name="months">

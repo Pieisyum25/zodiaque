@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="GlowingIcon">
-        <item name="android:tint">?attr/colorPrimary</item>
+    <style name="glowingIcon">
+        <item name="android:tint">?attr/colorSecondaryVariant</item>
+    </style>
+
+    <style name="background">
+        <item name="android:background">?attr/background</item>
     </style>
 </resources>

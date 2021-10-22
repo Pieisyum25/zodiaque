@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Zodiaque.TextView.Sign" parent="Widget.MaterialComponents.TextView">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/eagle_lake</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+    </style>
+
+    <style name="Widget.Zodiaque.TextView.Sign.Prompt" parent="Widget.Zodiaque.TextView.Sign">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.Zodiaque.TextView.Sign.Header" parent="Widget.Zodiaque.TextView.Sign">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Widget.Zodiaque.TextView.Sign.Footer" parent="Widget.Zodiaque.TextView.Sign">
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>
