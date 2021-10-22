@@ -35,7 +35,7 @@
             android:alpha="0.75"
             android:cropToPadding="false"
             android:importantForAccessibility="no"
-            android:padding="20dp"
+            android:padding="10dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/zodiac_circle"
             app:layout_constraintBottom_toBottomOf="parent"
