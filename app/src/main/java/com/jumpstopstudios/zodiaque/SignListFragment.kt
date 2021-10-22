@@ -48,7 +48,7 @@ class SignListFragment : Fragment() {
 
             // Infinitely loop pages:
             adapter = SignPagerAdapter(this@SignListFragment.requireActivity(), signs, paddingPageCount)
-            setCurrentItem(paddingPageCount, false)
+            if (currentItem == 0) setCurrentItem(paddingPageCount, false)
             val callback = SignPageChangeCallback(this, pageCount, paddingPageCount)
             registerOnPageChangeCallback(callback)
 
