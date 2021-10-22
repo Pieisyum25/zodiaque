@@ -20,4 +20,11 @@
     <style name="Widget.Zodiaque.TextView.Sign.Footer" parent="Widget.Zodiaque.TextView.Sign">
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="Widget.Zodiaque.TextView.Horoscope" parent="Widget.MaterialComponents.TextView">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/cardo_bold</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

@@ -1,5 +1,6 @@
 package com.jumpstopstudios.zodiaque
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,6 +37,11 @@ class SignListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "Started List onViewCreate")
+
+        // If orientation is landscape:
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            binding.signPrompt.visibility = View.GONE // hide sign prompt
+        }
 
         binding.signListViewpager.apply {
             Log.d(TAG, "Started List apply")
