@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/zodiac_circle" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@id/zodiac_circle" />
+    </ConstraintSet>
+
+    <Transition
+        android:id="@+id/rightToLeft"
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="1000">
+
+        <OnSwipe
+            app:dragDirection="dragLeft"
+            app:touchAnchorId="@id/sign_item_card"/>
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:rotation="0"
+                app:framePosition="0"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="-2"
+                app:framePosition="25"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="-3"
+                app:framePosition="50"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="-2"
+                app:framePosition="75"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="0"
+                app:framePosition="100"
+                app:motionTarget="@id/sign_item_card" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        android:id="@+id/leftToRight"
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
+        app:duration="1000">
+
+        <OnSwipe
+            app:dragDirection="dragRight"
+            app:touchAnchorId="@+id/sign_item_card" />
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:rotation="0"
+                app:framePosition="0"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="2"
+                app:framePosition="25"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="3"
+                app:framePosition="50"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="2"
+                app:framePosition="75"
+                app:motionTarget="@id/sign_item_card" />
+            <KeyAttribute
+                android:rotation="0"
+                app:framePosition="100"
+                app:motionTarget="@id/sign_item_card" />
+        </KeyFrameSet>
+    </Transition>
+</MotionScene>

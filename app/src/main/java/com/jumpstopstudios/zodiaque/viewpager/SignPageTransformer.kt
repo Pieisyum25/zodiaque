@@ -15,7 +15,7 @@ class SignPageTransformer(
     private val pageTranslationFactorY: Double = 0.15,
     private val pageTranslationYSymmetrical: Boolean = true,
     private val pageScaleFactor: Double = 0.75,
-    private val pageAlphaFactor: Double = 0.5
+    private val pageAlphaFactor: Double = 0.75
     ) : ViewPager2.PageTransformer {
 
         override fun transformPage(page: View, position: Float){
