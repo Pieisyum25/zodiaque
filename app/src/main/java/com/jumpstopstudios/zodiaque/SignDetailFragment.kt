@@ -33,7 +33,7 @@ class SignDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.generateHoroscope(args.sign.name.lowercase(Locale.getDefault()))
-        viewModel.horoscope.observe(viewLifecycleOwner) { horoscope ->
+        viewModel.status.observe(viewLifecycleOwner) { horoscope ->
             binding.signDetailText.text = horoscope
         }
     }
