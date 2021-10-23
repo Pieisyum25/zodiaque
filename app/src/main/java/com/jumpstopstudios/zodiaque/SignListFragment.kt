@@ -55,11 +55,11 @@ class SignListFragment : Fragment() {
             // Infinitely loop pages:
             adapter = SignPagerAdapter(this@SignListFragment.requireActivity(), signs, paddingPageCount)
             if (currentItem == 0) setCurrentItem(paddingPageCount, false)
-            val callback = SignPageChangeCallback(this, pageCount, paddingPageCount)
-            registerOnPageChangeCallback(callback)
 
             // Transform and animate pages:
-            setPageTransformer(SignPageTransformer(this, callback))
+            val callback = SignPageChangeCallback(binding, pageCount, paddingPageCount)
+            registerOnPageChangeCallback(callback)
+            setPageTransformer(SignPageTransformer(binding, pageCount, paddingPageCount, callback))
             addItemDecoration(SignPageWidthItemDecoration())
             Log.d(TAG, "Finished List apply")
         }

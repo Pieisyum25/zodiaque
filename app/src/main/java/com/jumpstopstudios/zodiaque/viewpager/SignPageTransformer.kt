@@ -1,15 +1,21 @@
 package com.jumpstopstudios.zodiaque.viewpager
 
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.fragment.app.findFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.jumpstopstudios.zodiaque.R
+import com.jumpstopstudios.zodiaque.SignItemFragment
+import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
 import kotlin.math.abs
 
 class SignPageTransformer(
-    private val viewPager: ViewPager2,
+    binding: FragmentSignListBinding,
+    private val pageCount: Int,
+    private val paddingPageCount: Int,
     private val pageChangeCallback: SignPageChangeCallback,
     private val pageTranslationFactorX: Double = 0.8,
     private val pageTranslationFactorY: Double = 0.15,
@@ -17,6 +23,10 @@ class SignPageTransformer(
     private val pageScaleFactor: Double = 0.75,
     private val pageAlphaFactor: Double = 0.75
     ) : ViewPager2.PageTransformer {
+
+    private val viewPager = binding.signListViewpager
+    private val zodiacCircle = binding.zodiacCircle
+
 
         override fun transformPage(page: View, position: Float){
             val absPosition = abs(position)
@@ -51,5 +61,13 @@ class SignPageTransformer(
                 R.id.leftToRight)
             else ((page as ViewGroup).getChildAt(0) as MotionLayout).setTransition(R.id.rightToLeft)
             (page.getChildAt(0) as MotionLayout).progress = pageChangeCallback.progress
+
+
+            // Rotate background image:
+            val index = cardView.findFragment<SignItemFragment>().position
+            if (index == viewPager.currentItem - paddingPageCount){
+                val percent = (index - position) / pageCount
+                zodiacCircle.rotation = -percent * 360
+            }
         }
 }

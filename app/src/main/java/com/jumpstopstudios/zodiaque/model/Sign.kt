@@ -8,5 +8,6 @@ import kotlinx.android.parcel.Parcelize
 data class Sign(
     val name: String,
     @DrawableRes val imageResId: Int,
-    val datesRange: String
+    val datesRange: String,
+    val position: Int
 ) : Parcelable

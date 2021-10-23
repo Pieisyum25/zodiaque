@@ -38,7 +38,7 @@ object SignItemDatasource {
             val endDay = dateRangeData[3]
             val dateRange = res.getString(R.string.sign_dates_range, startMonth, startDay, endMonth, endDay)
 
-            signs.add(Sign(name, imageResId, dateRange))
+            signs.add(Sign(name, imageResId, dateRange, index))
         }
         return signs
     }

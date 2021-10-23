@@ -20,11 +20,11 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layoutDescription="@xml/fragment_sign_list_scene"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layoutDescription="@xml/fragment_sign_list_scene">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/zodiac_circle"
@@ -37,11 +37,11 @@
             android:importantForAccessibility="no"
             android:padding="10dp"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/zodiac_circle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/zodiac_circle" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

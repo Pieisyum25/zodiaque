@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignItemBinding
 import com.jumpstopstudios.zodiaque.model.Sign
+import kotlin.properties.Delegates
 
 class SignItemFragment : Fragment() {
 
@@ -33,6 +34,9 @@ class SignItemFragment : Fragment() {
     private var _binding: FragmentSignItemBinding? = null
     private val binding get() = _binding!!
 
+    private var _position by Delegates.notNull<Int>()
+    val position get() = _position
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +55,7 @@ class SignItemFragment : Fragment() {
         binding.signItemHeader.text = sign.name
         binding.signItemImage.setImageResource(sign.imageResId)
         binding.signItemFooter.text = sign.datesRange
+        _position = sign.position
 
         // Get screen horizontal centre value:
         val displayMetrics = Resources.getSystem().displayMetrics
