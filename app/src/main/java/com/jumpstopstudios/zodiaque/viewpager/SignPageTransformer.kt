@@ -9,6 +9,7 @@ import androidx.fragment.app.findFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.jumpstopstudios.zodiaque.R
 import com.jumpstopstudios.zodiaque.SignItemFragment
+import com.jumpstopstudios.zodiaque.TAG
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
 import kotlin.math.abs
 
@@ -31,6 +32,7 @@ class SignPageTransformer(
         override fun transformPage(page: View, position: Float){
             val absPosition = abs(position)
             val cardView = page.findViewById<CardView>(R.id.sign_item_card)
+            val fragment = cardView.findFragment<SignItemFragment>()
 
             // Translate off-centre pages:
             // Pages further from the centre are translated more towards the centre.
@@ -64,10 +66,23 @@ class SignPageTransformer(
 
 
             // Rotate background image:
-            val index = cardView.findFragment<SignItemFragment>().position
+            val index = fragment.position
             if (index == viewPager.currentItem - paddingPageCount){
                 val percent = (index - position) / pageCount
                 zodiacCircle.rotation = -percent * 360
+            }
+
+            // When a fake/copy page reaches the centre, seamlessly switch to the real page.
+            // (For infinite looping)
+            val viewPagerIndex = fragment.viewPagerPosition
+            if (viewPagerIndex == viewPager.currentItem) {
+                Log.d(TAG, position.toString())
+                if (position == 0.0f) {
+                    when {
+                        viewPagerIndex < paddingPageCount -> viewPager.setCurrentItem(viewPagerIndex + pageCount, false)
+                        viewPagerIndex >= pageCount + paddingPageCount -> viewPager.setCurrentItem(viewPagerIndex - pageCount, false)
+                    }
+                }
             }
         }
 }

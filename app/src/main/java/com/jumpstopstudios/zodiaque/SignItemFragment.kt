@@ -20,10 +20,11 @@ class SignItemFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(sign: Sign): SignItemFragment {
+        fun newInstance(viewPagerPosition: Int, sign: Sign): SignItemFragment {
             val fragment = SignItemFragment()
 
             val args = Bundle()
+            args.putInt("viewpager_position", viewPagerPosition)
             args.putParcelable("sign", sign)
             fragment.arguments = args
 
@@ -33,6 +34,9 @@ class SignItemFragment : Fragment() {
 
     private var _binding: FragmentSignItemBinding? = null
     private val binding get() = _binding!!
+
+    private var _viewPagerPosition by Delegates.notNull<Int>()
+    val viewPagerPosition get() = _viewPagerPosition
 
     private var _position by Delegates.notNull<Int>()
     val position get() = _position
@@ -56,6 +60,7 @@ class SignItemFragment : Fragment() {
         binding.signItemImage.setImageResource(sign.imageResId)
         binding.signItemFooter.text = sign.datesRange
         _position = sign.position
+        _viewPagerPosition = arguments?.getInt("viewpager_position")!!
 
         // Get screen horizontal centre value:
         val displayMetrics = Resources.getSystem().displayMetrics

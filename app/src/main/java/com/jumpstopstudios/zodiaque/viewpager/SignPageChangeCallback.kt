@@ -31,14 +31,5 @@ class SignPageChangeCallback(
             position - 1 -> 1 - positionOffset
             else -> 0f
         }
-
-        // When a fake/copy page reaches the centre, seamlessly switch to the real page.
-        // (For infinite looping)
-        if (positionOffset == 0f) {
-            when {
-                position < paddingPageCount -> viewPager.setCurrentItem(position + pageCount, false)
-                position >= pageCount + paddingPageCount -> viewPager.setCurrentItem(position - pageCount, false)
-            }
-        }
     }
 }

@@ -23,6 +23,6 @@ class SignPagerAdapter(
             position >= pageCount + paddingPageCount -> adjustedPosition -= pageCount
         }
         adjustedPosition -= paddingPageCount
-        return SignItemFragment.newInstance(signArray[adjustedPosition])
+        return SignItemFragment.newInstance(position, signArray[adjustedPosition])
     }
 }
