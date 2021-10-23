@@ -4,7 +4,7 @@
     <dimen name="sign_card_elevation">20dp</dimen>
     <dimen name="sign_card_content_margin">15dp</dimen>
 
-    <dimen name="general_card_corner_radius">20dp</dimen>
-    <dimen name="general_card_elevation">15dp</dimen>
-    <dimen name="general_card_content_margin">20dp</dimen>
+    <dimen name="general_card_corner_radius">15dp</dimen>
+    <dimen name="general_card_elevation">10dp</dimen>
+    <dimen name="general_card_content_margin">15dp</dimen>
 </resources>

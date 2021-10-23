@@ -29,8 +29,13 @@ class MainViewModel : ViewModel() {
             Site("Daily Horoscope", "A new horoscope everyday!",
                 mutableListOf(
                     Section(
-                        "Your daily horoscope:",
+                        "Today's Horoscope:",
                         "https://www.dailyhoroscope.com/horoscopes/daily/%s?full=true",
+                        { document -> document.select(".body:first-of-type").textNodes()[0].text() }
+                    ),
+                    Section(
+                        "Tomorrow's Horoscope:",
+                        "https://www.dailyhoroscope.com/horoscopes/daily/%s?tomorrow&full=true",
                         { document -> document.select(".body:first-of-type").textNodes()[0].text() }
                     )
                 )
@@ -62,6 +67,9 @@ class MainViewModel : ViewModel() {
                         }
                     }
                 }
+
+                // Force UI change:
+                _horoscope.postValue(horoscope.value)
 
                 // Report status:
                 if (sectionsLoaded > 0) _status.postValue("Loading Finished. (Sections: $sectionsLoaded/$sectionsTotal)")

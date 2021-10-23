@@ -23,6 +23,7 @@
         <item name="colorSecondaryVariant">@color/secondaryLighterColor</item>
         <item name="colorOnSecondary">@color/black</item>
 
-        <item name="background">@color/black</item>
+        <item name="background">@color/secondaryDarkColor</item>
+        <item name="cardBackgroundColor">@color/darkGray</item>
     </style>
 </resources>

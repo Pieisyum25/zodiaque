@@ -1,6 +1,7 @@
 package com.jumpstopstudios.zodiaque
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,7 @@ class SignDetailFragment : Fragment() {
                 binding.signDetailStatus.text = status
             }
             horoscope.observe(viewLifecycleOwner) { horoscope ->
+                Log.d(TAG, "Changed")
                 (binding.signDetailRecyclerview.adapter as SiteAdapter).submitList(horoscope)
             }
         }
