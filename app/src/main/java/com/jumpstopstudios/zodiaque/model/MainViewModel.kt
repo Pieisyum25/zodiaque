@@ -19,7 +19,7 @@ class MainViewModel : ViewModel() {
     private val _horoscope = MutableLiveData<List<Site>>()
     val horoscope: LiveData<List<Site>> = _horoscope
 
-    private val sectionsTotal: Int;
+    private val sectionsTotal: Int
 
     init {
         _status.value = "Error!"

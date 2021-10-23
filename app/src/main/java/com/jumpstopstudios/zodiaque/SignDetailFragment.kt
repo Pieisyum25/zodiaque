@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignDetailBinding
 import com.jumpstopstudios.zodiaque.model.MainViewModel
+import com.jumpstopstudios.zodiaque.recyclerview.SiteAdapter
 import java.util.*
 
 class SignDetailFragment : Fragment() {
@@ -32,9 +34,19 @@ class SignDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.generateHoroscope(args.sign.name.lowercase(Locale.getDefault()))
-        viewModel.status.observe(viewLifecycleOwner) { horoscope ->
-            binding.signDetailText.text = horoscope
+        binding.signDetailRecyclerview.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = SiteAdapter(context)
+        }
+
+        viewModel.apply {
+            generateHoroscope(args.sign.name.lowercase(Locale.getDefault()))
+            status.observe(viewLifecycleOwner) { status ->
+                binding.signDetailStatus.text = status
+            }
+            horoscope.observe(viewLifecycleOwner) { horoscope ->
+                (binding.signDetailRecyclerview.adapter as SiteAdapter).submitList(horoscope)
+            }
         }
     }
 
