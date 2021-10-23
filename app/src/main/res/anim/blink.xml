@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Code adapted from: https://www.tutorialspoint.com/android/android_animations.htm#:~:text=Tween%20Animation%20%20%20%20Sr.No%20%20,ends%20the%20animation.%20%201%20more%20rows%20 -->
+    <alpha
+        android:duration="1000"
+        android:fromAlpha="0.5"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:toAlpha="1.0" />
+</set>

@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
 import com.jumpstopstudios.zodiaque.model.SignItemDatasource
@@ -43,6 +45,12 @@ class SignListFragment : Fragment() {
             binding.signPrompt.visibility = View.GONE // hide sign prompt
         }
 
+        // Looping animations:
+        val blinkAnimation = AnimationUtils.loadAnimation(context, R.anim.blink);
+        binding.zodiacCircle.startAnimation(blinkAnimation)
+        val bobAnimation = AnimationUtils.loadAnimation(context, R.anim.bob);
+        binding.signListViewpager.startAnimation(bobAnimation)
+
         binding.signListViewpager.apply {
             Log.d(TAG, "Started List apply")
             val signs = SignItemDatasource.loadSigns(context)
@@ -61,6 +69,7 @@ class SignListFragment : Fragment() {
             registerOnPageChangeCallback(callback)
             setPageTransformer(SignPageTransformer(binding, pageCount, paddingPageCount, callback))
             addItemDecoration(SignPageWidthItemDecoration())
+
             Log.d(TAG, "Finished List apply")
         }
         Log.d(TAG, "Finished List onViewCreate")

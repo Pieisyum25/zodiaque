@@ -76,7 +76,7 @@ class SignPageTransformer(
             // (For infinite looping)
             val viewPagerIndex = fragment.viewPagerPosition
             if (viewPagerIndex == viewPager.currentItem) {
-                Log.d(TAG, position.toString())
+                //Log.d(TAG, position.toString())
                 if (position == 0.0f) {
                     when {
                         viewPagerIndex < paddingPageCount -> viewPager.setCurrentItem(viewPagerIndex + pageCount, false)
