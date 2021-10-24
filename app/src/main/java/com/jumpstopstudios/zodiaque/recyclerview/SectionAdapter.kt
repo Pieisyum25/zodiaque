@@ -22,6 +22,7 @@ class SectionAdapter : ListAdapter<Section, SectionAdapter.SectionViewHolder>(Di
     class SectionViewHolder(private var binding: LayoutSectionItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(section: Section){
+            binding.sectionTitle.text = section.title
             binding.sectionContent.text = section.content
         }
     }

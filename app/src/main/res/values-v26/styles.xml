@@ -28,6 +28,14 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="Widget.Zodiaque.TextView.Horoscope.Small" parent="Widget.Zodiaque.TextView.Horoscope">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Zodiaque.TextView.Horoscope.Big" parent="Widget.Zodiaque.TextView.Horoscope">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="Widget.Zodiaque.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
