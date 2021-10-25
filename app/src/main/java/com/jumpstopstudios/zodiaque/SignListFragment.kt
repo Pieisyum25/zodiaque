@@ -6,15 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
 import com.jumpstopstudios.zodiaque.model.SignItemDatasource
-import com.jumpstopstudios.zodiaque.viewpager.SignPageChangeCallback
-import com.jumpstopstudios.zodiaque.viewpager.SignPageTransformer
-import com.jumpstopstudios.zodiaque.viewpager.SignPageWidthItemDecoration
-import com.jumpstopstudios.zodiaque.viewpager.SignPagerAdapter
+import com.jumpstopstudios.zodiaque.sign.SignPageChangeCallback
+import com.jumpstopstudios.zodiaque.sign.SignPageTransformer
+import com.jumpstopstudios.zodiaque.sign.SignPageWidthItemDecoration
+import com.jumpstopstudios.zodiaque.sign.SignPagerAdapter
 
 class SignListFragment : Fragment() {
 
@@ -65,7 +64,7 @@ class SignListFragment : Fragment() {
             if (currentItem == 0) setCurrentItem(paddingPageCount, false)
 
             // Transform and animate pages:
-            val callback = SignPageChangeCallback(binding, pageCount, paddingPageCount)
+            val callback = SignPageChangeCallback()
             registerOnPageChangeCallback(callback)
             setPageTransformer(SignPageTransformer(binding, pageCount, paddingPageCount, callback))
             addItemDecoration(SignPageWidthItemDecoration())

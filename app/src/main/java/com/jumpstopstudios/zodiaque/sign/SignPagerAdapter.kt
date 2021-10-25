@@ -1,4 +1,4 @@
-package com.jumpstopstudios.zodiaque.viewpager
+package com.jumpstopstudios.zodiaque.sign
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -11,6 +11,7 @@ class SignPagerAdapter(
     private val signArray: List<Sign>,
     private val paddingPageCount: Int
 ) : FragmentStateAdapter(fragmentActivity){
+
 
     private val pageCount = signArray.size
     

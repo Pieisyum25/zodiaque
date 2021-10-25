@@ -1,10 +1,8 @@
-package com.jumpstopstudios.zodiaque.recyclerview
+package com.jumpstopstudios.zodiaque.horoscope
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jumpstopstudios.zodiaque.databinding.LayoutSectionItemBinding
 import com.jumpstopstudios.zodiaque.model.Section

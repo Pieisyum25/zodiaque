@@ -1,6 +1,5 @@
-package com.jumpstopstudios.zodiaque.viewpager
+package com.jumpstopstudios.zodiaque.sign
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
@@ -9,7 +8,6 @@ import androidx.fragment.app.findFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.jumpstopstudios.zodiaque.R
 import com.jumpstopstudios.zodiaque.SignItemFragment
-import com.jumpstopstudios.zodiaque.TAG
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
 import kotlin.math.abs
 

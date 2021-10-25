@@ -1,4 +1,4 @@
-package com.jumpstopstudios.zodiaque.recyclerview
+package com.jumpstopstudios.zodiaque.horoscope
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -17,6 +17,7 @@ class SiteAdapter(
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
+    
     inner class SiteViewHolder(private var binding: LayoutSiteItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(site: Site){

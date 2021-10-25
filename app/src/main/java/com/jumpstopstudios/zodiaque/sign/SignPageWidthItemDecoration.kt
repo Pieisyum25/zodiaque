@@ -1,4 +1,4 @@
-package com.jumpstopstudios.zodiaque.viewpager
+package com.jumpstopstudios.zodiaque.sign
 
 import android.graphics.Rect
 import android.view.View

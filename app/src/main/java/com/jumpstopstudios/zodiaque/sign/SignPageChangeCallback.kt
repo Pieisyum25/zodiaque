@@ -1,16 +1,10 @@
-package com.jumpstopstudios.zodiaque.viewpager
+package com.jumpstopstudios.zodiaque.sign
 
 import androidx.viewpager2.widget.ViewPager2
-import com.jumpstopstudios.zodiaque.databinding.FragmentSignListBinding
 import kotlin.properties.Delegates
 
-class SignPageChangeCallback(
-    binding: FragmentSignListBinding,
-    private val pageCount: Int,
-    private val paddingPageCount: Int
-    ) : ViewPager2.OnPageChangeCallback(){
+class SignPageChangeCallback : ViewPager2.OnPageChangeCallback(){
 
-    private var viewPager = binding.signListViewpager
 
     private var prevOffset = 0.0f
     var goingLeft: Boolean by Delegates.notNull()

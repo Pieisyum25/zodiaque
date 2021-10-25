@@ -1,7 +1,6 @@
 package com.jumpstopstudios.zodiaque
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignDetailBinding
 import com.jumpstopstudios.zodiaque.model.MainViewModel
-import com.jumpstopstudios.zodiaque.recyclerview.SiteAdapter
+import com.jumpstopstudios.zodiaque.horoscope.SiteAdapter
 import java.util.*
 
 class SignDetailFragment : Fragment() {
