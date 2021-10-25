@@ -16,8 +16,7 @@ class MainViewModel : ViewModel() {
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
 
-    private val _horoscope = MutableLiveData<List<Site>>()
-    val horoscope: LiveData<List<Site>> = _horoscope
+    val horoscope: List<Site>
 
     private val sectionsTotal: Int
 
@@ -43,33 +42,40 @@ class MainViewModel : ViewModel() {
         )
 
         sectionsTotal = sites.flatMap { it.sections }.count()
-        _horoscope.value = sites
+        horoscope = sites
     }
 
     fun generateHoroscope(sign: String) {
-        _status.value = "Loading..."
+        _status.value = "Loading Horoscope... (Sections: 0/$sectionsTotal)"
+
+        // Set each section's content to loading message:
+        horoscope.flatMap { it.sections }.map { it.content }.forEach { it.value = "Loading..." }
+
+        // Launch coroutine to web-scrape horoscope:
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 var sectionsLoaded = 0
 
                 // Attempt to scrape content from each site:
-                for (site in horoscope.value!!){
+                for (site in horoscope){
                     for (section in site.sections){
                         try {
                             section.apply {
-                                content = scrapeFunction(Jsoup.connect(url.format(sign)).get())
+                                content.postValue(scrapeFunction(Jsoup.connect(url.format(sign)).get()))
                             }
-                            sectionsLoaded++
                         } catch(e: Throwable){
+                            section.content.postValue("Loading failed.")
                             Log.d(TAG,
                                 "Section: ${section.title} of Site: ${site.name} " +
                                         "failed to load:\n" + e.stackTraceToString())
                         }
+                        sectionsLoaded++
+                        _status.postValue("Loading Horoscope... (Sections: $sectionsLoaded/$sectionsTotal)")
                     }
                 }
 
                 // Force UI change:
-                _horoscope.postValue(horoscope.value)
+                //_horoscope.postValue(horoscope.value)
 
                 // Report status:
                 if (sectionsLoaded > 0) _status.postValue("Loading Finished. (Sections: $sectionsLoaded/$sectionsTotal)")

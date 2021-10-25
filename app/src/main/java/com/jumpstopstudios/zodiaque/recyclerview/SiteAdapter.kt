@@ -1,20 +1,19 @@
 package com.jumpstopstudios.zodiaque.recyclerview
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jumpstopstudios.zodiaque.TAG
 import com.jumpstopstudios.zodiaque.databinding.LayoutSiteItemBinding
 import com.jumpstopstudios.zodiaque.model.Site
 
 class SiteAdapter(
     private val context: Context,
-    ) : ListAdapter<Site, SiteAdapter.SiteViewHolder>(DiffCallback) {
+    private val sites: List<Site>,
+    private val lifecycleOwner: LifecycleOwner
+    ) : RecyclerView.Adapter<SiteAdapter.SiteViewHolder>() {
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
@@ -23,23 +22,8 @@ class SiteAdapter(
         fun bind(site: Site){
             binding.siteName.text = site.name
             binding.siteRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            val adapter = SectionAdapter()
-            adapter.submitList(site.sections)
-            binding.siteRecyclerview.adapter = adapter
+            binding.siteRecyclerview.adapter = SectionAdapter(site.sections, lifecycleOwner)
             binding.siteRecyclerview.setRecycledViewPool(viewPool)
-        }
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<Site>() {
-
-        override fun areItemsTheSame(oldItem: Site, newItem: Site): Boolean = oldItem.name == newItem.name
-        override fun areContentsTheSame(oldItem: Site, newItem: Site): Boolean {
-            if (oldItem.sections.size != newItem.sections.size) return false
-            for (index in oldItem.sections.indices){
-                if (oldItem.sections[index].content != newItem.sections[index].content) return false
-                Log.d(TAG, oldItem.sections[index].content)
-            }
-            return true
         }
     }
 
@@ -48,14 +32,16 @@ class SiteAdapter(
     }
 
     override fun onBindViewHolder(holder: SiteViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(sites[position])
     }
+
+    override fun getItemCount(): Int = sites.size
 
     /**
      * Force DiffUtil to check for differences.
      * You must submit a different List instance for it to even consider deep changes.
      */
-    override fun submitList(list: List<Site>?) {
+    /*override fun submitList(list: List<Site>?) {
         super.submitList(list?.let { ArrayList(it.map{ site -> site.copy() }) })
-    }
+    }*/
 }

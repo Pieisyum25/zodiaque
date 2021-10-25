@@ -2,6 +2,7 @@ package com.jumpstopstudios.zodiaque.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,20 +18,20 @@ import com.jumpstopstudios.zodiaque.model.Section
  * - RecyclerView.Adapter can be configured to work the same way.
  * - ListAdapter forces the use of a DiffUtil callback.
  */
-class SectionAdapter : ListAdapter<Section, SectionAdapter.SectionViewHolder>(DiffCallback) {
+class SectionAdapter(
+    private val sections: List<Section>,
+    private val lifecycleOwner: LifecycleOwner
+) : RecyclerView.Adapter<SectionAdapter.SectionViewHolder>() {
 
-    class SectionViewHolder(private var binding: LayoutSectionItemBinding) : RecyclerView.ViewHolder(binding.root){
+
+    inner class SectionViewHolder(private var binding: LayoutSectionItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(section: Section){
             binding.sectionTitle.text = section.title
-            binding.sectionContent.text = section.content
+            section.content.observe(lifecycleOwner) { content ->
+                binding.sectionContent.text = content
+            }
         }
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<Section>() {
-
-        override fun areItemsTheSame(oldItem: Section, newItem: Section): Boolean = oldItem.title == newItem.title
-        override fun areContentsTheSame(oldItem: Section, newItem: Section): Boolean = oldItem.content == newItem.content
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SectionViewHolder {
@@ -38,6 +39,8 @@ class SectionAdapter : ListAdapter<Section, SectionAdapter.SectionViewHolder>(Di
     }
 
     override fun onBindViewHolder(holder: SectionViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(sections[position])
     }
+
+    override fun getItemCount(): Int = sections.size
 }

@@ -37,17 +37,13 @@ class SignDetailFragment : Fragment() {
 
         binding.signDetailRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = SiteAdapter(context)
+            adapter = SiteAdapter(context, viewModel.horoscope, viewLifecycleOwner)
         }
 
         viewModel.apply {
             generateHoroscope(args.sign.name.lowercase(Locale.getDefault()))
             status.observe(viewLifecycleOwner) { status ->
                 binding.signDetailStatus.text = status
-            }
-            horoscope.observe(viewLifecycleOwner) { horoscope ->
-                Log.d(TAG, "Changed")
-                (binding.signDetailRecyclerview.adapter as SiteAdapter).submitList(horoscope)
             }
         }
     }
