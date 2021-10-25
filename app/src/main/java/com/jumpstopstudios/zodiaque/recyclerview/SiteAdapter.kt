@@ -36,12 +36,4 @@ class SiteAdapter(
     }
 
     override fun getItemCount(): Int = sites.size
-
-    /**
-     * Force DiffUtil to check for differences.
-     * You must submit a different List instance for it to even consider deep changes.
-     */
-    /*override fun submitList(list: List<Site>?) {
-        super.submitList(list?.let { ArrayList(it.map{ site -> site.copy() }) })
-    }*/
 }

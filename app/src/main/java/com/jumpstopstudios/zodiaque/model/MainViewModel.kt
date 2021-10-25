@@ -56,7 +56,7 @@ class MainViewModel : ViewModel() {
             withContext(Dispatchers.Default) {
                 var sectionsLoaded = 0
 
-                // Attempt to scrape content from each site:
+                // Attempt to scrape content for each section:
                 for (site in horoscope){
                     for (section in site.sections){
                         try {
@@ -73,9 +73,6 @@ class MainViewModel : ViewModel() {
                         _status.postValue("Loading Horoscope... (Sections: $sectionsLoaded/$sectionsTotal)")
                     }
                 }
-
-                // Force UI change:
-                //_horoscope.postValue(horoscope.value)
 
                 // Report status:
                 if (sectionsLoaded > 0) _status.postValue("Loading Finished. (Sections: $sectionsLoaded/$sectionsTotal)")
