@@ -53,7 +53,13 @@ class SignDetailFragment : Fragment() {
                 val bobAnimation = AnimationUtils.loadAnimation(context, R.anim.bob);
                 signItemCard.startAnimation(bobAnimation)
             }
+        }
 
+        // Animate and rotate zodiac circle at bottom:
+        val blinkAnimation = AnimationUtils.loadAnimation(context, R.anim.blink);
+        binding.signDetailZodiacCircle.apply {
+            startAnimation(blinkAnimation)
+            rotation = -30f * args.sign.position
         }
 
         binding.signDetailRecyclerview.apply {

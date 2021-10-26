@@ -26,11 +26,28 @@
         app:layout_constraintTop_toBottomOf="@id/sign_detail_item"
         tools:text="Loading..." />
 
+    <ImageView
+        android:id="@+id/sign_detail_zodiac_circle"
+        style="@style/glowingIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:alpha="0.75"
+        android:cropToPadding="false"
+        android:importantForAccessibility="no"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:srcCompat="@drawable/zodiac_circle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sign_detail_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@null"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
