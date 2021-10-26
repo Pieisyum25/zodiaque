@@ -6,30 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/sign_detail_header"
-        style="@style/Widget.Zodiaque.CardView"
+    <include
+        android:id="@+id/sign_detail_item"
+        layout="@layout/fragment_sign_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/sign_detail_status"
-            style="@style/Widget.Zodiaque.TextView.Horoscope"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            tools:text="Loading..." />
 
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/sign_detail_status"
+        style="@style/Widget.Zodiaque.TextView.Horoscope.Background"
+        app:layout_constraintBottom_toTopOf="@id/sign_detail_recyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_detail_item"
+        tools:text="Loading..." />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sign_detail_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sign_detail_header" />
+        app:layout_constraintTop_toBottomOf="@id/sign_detail_status"
+        tools:listitem="@layout/layout_site_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

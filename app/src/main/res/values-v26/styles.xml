@@ -21,19 +21,21 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Widget.Zodiaque.TextView.Horoscope" parent="Widget.MaterialComponents.TextView">
+    <style name="Widget.Zodiaque.TextView.Horoscope.Card" parent="Widget.MaterialComponents.TextView">
         <item name="android:gravity">center_vertical</item>
         <item name="android:fontFamily">@font/cardo_bold</item>
         <item name="android:textColor">?attr/colorSecondaryVariant</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="Widget.Zodiaque.TextView.Horoscope.Small" parent="Widget.Zodiaque.TextView.Horoscope">
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Widget.Zodiaque.TextView.Horoscope.Big" parent="Widget.Zodiaque.TextView.Horoscope">
-        <item name="android:textSize">20sp</item>
+    <style name="Widget.Zodiaque.TextView.Horoscope.Background" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:fontFamily">@font/cardo_bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="Widget.Zodiaque.CardView" parent="Widget.MaterialComponents.CardView">

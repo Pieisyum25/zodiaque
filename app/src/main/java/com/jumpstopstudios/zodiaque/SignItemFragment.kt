@@ -56,9 +56,11 @@ class SignItemFragment : Fragment() {
 
         // Initialize sign info:
         val sign = arguments?.getParcelable<Sign>("sign")!!
-        binding.signItemHeader.text = sign.name
-        binding.signItemImage.setImageResource(sign.imageResId)
-        binding.signItemFooter.text = sign.datesRange
+        binding.apply{
+            signItemHeader.text = sign.name
+            signItemImage.setImageResource(sign.imageResId)
+            signItemFooter.text = sign.datesRange
+        }
         _position = sign.position
         _viewPagerPosition = arguments?.getInt("viewpager_position")!!
 
