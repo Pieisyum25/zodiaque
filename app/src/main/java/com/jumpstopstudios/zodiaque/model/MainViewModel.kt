@@ -25,8 +25,13 @@ class MainViewModel : ViewModel() {
     init {
         val sites = mutableListOf<Site>()
         sites.add(
-            Site("Daily Horoscope", "A new horoscope everyday!",
+            Site("dailyhoroscope.com", "Daily Horoscopes, Love Horoscopes...",
                 mutableListOf(
+                    Section(
+                        "Yesterday's Horoscope:",
+                        "https://www.dailyhoroscope.com/horoscopes/daily/%s?yesterday&full=true",
+                        { document -> document.select(".body:first-of-type").textNodes()[0].text() }
+                    ),
                     Section(
                         "Today's Horoscope:",
                         "https://www.dailyhoroscope.com/horoscopes/daily/%s?full=true",
@@ -36,6 +41,43 @@ class MainViewModel : ViewModel() {
                         "Tomorrow's Horoscope:",
                         "https://www.dailyhoroscope.com/horoscopes/daily/%s?tomorrow&full=true",
                         { document -> document.select(".body:first-of-type").textNodes()[0].text() }
+                    )
+                )
+            )
+        )
+        /*sites.add(
+            Site("horoscope.com", "Free Horoscopes, Zodiac Signs, Numerology and More...",
+                mutableListOf(
+                    Section("Today's Horoscope:",
+                        "https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign=1",
+                        { document -> document.select(".main-horoscope p:first-of-type").text() }
+                    )
+                )
+            )
+        )*/
+        sites.add(
+            Site("astrology.com", "Horoscopes, Tarot & Love Compatibility",
+                mutableListOf(
+                    Section("Yesterday's Horoscope:",
+                        "https://www.astrology.com/horoscope/daily/yesterday/%s.html",
+                        { document ->
+                            (document.select(".d-flex span").text() + "- " +
+                                    document.select("div#content p").text())
+                        }
+                    ),
+                    Section("Today's Horoscope:",
+                        "https://www.astrology.com/horoscope/daily/%s.html",
+                        { document ->
+                            (document.select(".d-flex span").text() + "- " +
+                            document.select("div#content p").text())
+                        }
+                    ),
+                    Section("Tomorrow's Horoscope:",
+                        "https://www.astrology.com/horoscope/daily/tomorrow/%s.html",
+                        { document ->
+                            (document.select(".d-flex span").text() + "- " +
+                                    document.select("div#content p").text())
+                        }
                     )
                 )
             )
