@@ -22,7 +22,6 @@
     </style>
 
     <style name="Widget.Zodiaque.TextView.Horoscope.Card" parent="Widget.MaterialComponents.TextView">
-        <item name="android:gravity">center_vertical</item>
         <item name="android:fontFamily">@font/cardo_bold</item>
         <item name="android:textColor">?attr/colorSecondaryVariant</item>
         <item name="android:textSize">12sp</item>
