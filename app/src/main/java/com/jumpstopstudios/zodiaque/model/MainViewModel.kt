@@ -13,16 +13,16 @@ import org.jsoup.Jsoup
 
 class MainViewModel : ViewModel() {
 
-    private val _status = MutableLiveData<String>()
-    val status: LiveData<String> = _status
-
     val horoscope: List<Site>
 
-    private val sectionsTotal: Int
+    private val _status = MutableLiveData<LoadingStatus>()
+    val status: LiveData<LoadingStatus> = _status
+    private val _sectionsLoaded = MutableLiveData<Int>()
+    val sectionsLoaded: LiveData<Int> = _sectionsLoaded
+    val sectionsTotal: Int
+
 
     init {
-        _status.value = "Error!"
-
         val sites = mutableListOf<Site>()
         sites.add(
             Site("Daily Horoscope", "A new horoscope everyday!",
@@ -46,7 +46,9 @@ class MainViewModel : ViewModel() {
     }
 
     fun generateHoroscope(sign: String) {
-        _status.value = "Loading Horoscope... (Sections: 0/$sectionsTotal)"
+        _status.value = LoadingStatus.LOADING
+        _sectionsLoaded.value = 0
+        var sectionsLoadedSuccessfully = 0
 
         // Set each section's content to loading message:
         horoscope.flatMap { it.sections }.map { it.content }.forEach { it.value = "Loading..." }
@@ -54,7 +56,6 @@ class MainViewModel : ViewModel() {
         // Launch coroutine to web-scrape horoscope:
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
-                var sectionsLoaded = 0
 
                 // Attempt to scrape content for each section:
                 for (site in horoscope){
@@ -63,20 +64,20 @@ class MainViewModel : ViewModel() {
                             section.apply {
                                 content.postValue(scrapeFunction(Jsoup.connect(url.format(sign)).get()))
                             }
+                            sectionsLoadedSuccessfully++
                         } catch(e: Throwable){
                             section.content.postValue("Loading failed.")
                             Log.d(TAG,
                                 "Section: ${section.title} of Site: ${site.name} " +
                                         "failed to load:\n" + e.stackTraceToString())
                         }
-                        sectionsLoaded++
-                        _status.postValue("Loading Horoscope... (Sections: $sectionsLoaded/$sectionsTotal)")
+                        _sectionsLoaded.postValue(sectionsLoaded.value?.plus(1))
                     }
                 }
 
                 // Report status:
-                if (sectionsLoaded > 0) _status.postValue("Loading Finished. (Sections: $sectionsLoaded/$sectionsTotal)")
-                else _status.postValue("Your horoscope is currently unavailable. :)")
+                if (sectionsLoadedSuccessfully > 0) _status.postValue(LoadingStatus.SUCCESSFUL)
+                else _status.postValue(LoadingStatus.FAILED)
             }
         }
     }

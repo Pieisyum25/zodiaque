@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jumpstopstudios.zodiaque.databinding.FragmentSignDetailBinding
 import com.jumpstopstudios.zodiaque.model.MainViewModel
 import com.jumpstopstudios.zodiaque.horoscope.SiteAdapter
-import com.jumpstopstudios.zodiaque.model.Sign
+import com.jumpstopstudios.zodiaque.model.LoadingStatus
 import java.util.*
 
 class SignDetailFragment : Fragment() {
@@ -56,17 +56,31 @@ class SignDetailFragment : Fragment() {
 
         }
 
-
         binding.signDetailRecyclerview.apply {
+            visibility = View.INVISIBLE
             layoutManager = LinearLayoutManager(context)
             adapter = SiteAdapter(viewModel.horoscope, viewLifecycleOwner)
         }
 
         viewModel.apply {
             generateHoroscope(args.sign.name.lowercase(Locale.getDefault()))
-            status.observe(viewLifecycleOwner) { status ->
-                binding.signDetailStatus.text = status
+            binding.signDetailStatus.apply {
+                status.observe(viewLifecycleOwner) {
+                    when (it){
+                        LoadingStatus.FAILED -> text = "Your horoscope is currently unavailable."
+                        LoadingStatus.SUCCESSFUL -> {
+                            text = "Loading Complete! (Sections: ${sectionsLoaded.value}/$sectionsTotal)"
+                            binding.signDetailRecyclerview.visibility = View.VISIBLE
+                            val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+                            binding.signDetailRecyclerview.startAnimation(fadeInAnimation)
+                        }
+                    }
+                }
+                sectionsLoaded.observe(viewLifecycleOwner) {
+                    text = "Loading... (Sections: $it/$sectionsTotal)"
+                }
             }
+
         }
     }
 
