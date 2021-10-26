@@ -67,7 +67,7 @@ class SignPageTransformer(
             val index = fragment.position
             if (index == viewPager.currentItem - paddingPageCount){
                 val percent = (index - position) / pageCount
-                zodiacCircle.rotation = -percent * 360
+                zodiacCircle.zodiacCircle.rotation = -percent * 360
             }
 
             // When a fake/copy page reaches the centre, seamlessly switch to the real page.

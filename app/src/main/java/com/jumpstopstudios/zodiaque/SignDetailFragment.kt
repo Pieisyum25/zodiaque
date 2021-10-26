@@ -57,7 +57,7 @@ class SignDetailFragment : Fragment() {
 
         // Animate and rotate zodiac circle at bottom:
         val blinkAnimation = AnimationUtils.loadAnimation(context, R.anim.blink);
-        binding.signDetailZodiacCircle.apply {
+        binding.signDetailZodiacCircle.zodiacCircle.apply {
             startAnimation(blinkAnimation)
             rotation = -30f * args.sign.position
         }

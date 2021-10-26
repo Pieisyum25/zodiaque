@@ -46,7 +46,7 @@ class SignListFragment : Fragment() {
 
         // Looping animations:
         val blinkAnimation = AnimationUtils.loadAnimation(context, R.anim.blink);
-        binding.zodiacCircle.startAnimation(blinkAnimation)
+        binding.zodiacCircle.zodiacCircle.startAnimation(blinkAnimation)
         val bobAnimation = AnimationUtils.loadAnimation(context, R.anim.bob);
         binding.signListViewpager.startAnimation(bobAnimation)
 

@@ -16,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/sign_detail_status"
         style="@style/Widget.Zodiaque.TextView.Horoscope.Background"
@@ -26,22 +25,15 @@
         app:layout_constraintTop_toBottomOf="@id/sign_detail_item"
         tools:text="Loading..." />
 
-    <ImageView
+    <include
         android:id="@+id/sign_detail_zodiac_circle"
-        style="@style/glowingIcon"
+        layout="@layout/layout_zodiac_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:alpha="0.75"
-        android:cropToPadding="false"
-        android:importantForAccessibility="no"
-        android:padding="10dp"
-        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:srcCompat="@drawable/zodiac_circle" />
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sign_detail_recyclerview"

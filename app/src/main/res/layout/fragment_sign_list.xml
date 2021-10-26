@@ -17,22 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <include
         android:id="@+id/zodiac_circle"
-        style="@style/glowingIcon"
+        layout="@layout/layout_zodiac_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:alpha="0.75"
-        android:cropToPadding="false"
-        android:importantForAccessibility="no"
-        android:padding="10dp"
-        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/zodiac_circle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/sign_list_viewpager"
