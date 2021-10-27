@@ -25,6 +25,7 @@ class SignDetailFragment : Fragment() {
 
     private val args: SignDetailFragmentArgs by navArgs()
 
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,31 +63,46 @@ class SignDetailFragment : Fragment() {
             rotation = -30f * args.sign.position
         }
 
+        // Init recyclerview:
         binding.signDetailRecyclerview.apply {
             visibility = View.INVISIBLE
             layoutManager = LinearLayoutManager(context)
             adapter = SiteAdapter(viewModel.horoscope, viewLifecycleOwner)
         }
 
+        // Set status text:
+        updateStatus()
         viewModel.apply {
             generateHoroscope(args.sign.name.lowercase(Locale.getDefault()))
-            binding.signDetailStatus.apply {
-                status.observe(viewLifecycleOwner) {
-                    when (it){
-                        LoadingStatus.FAILED -> text = "Your horoscope is currently unavailable."
-                        LoadingStatus.SUCCESSFUL -> {
-                            text = "Loading Complete! (Sections: ${sectionsLoaded.value}/$sectionsTotal)"
-                            binding.signDetailRecyclerview.visibility = View.VISIBLE
-                            val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-                            binding.signDetailRecyclerview.startAnimation(fadeInAnimation)
+            status.observe(viewLifecycleOwner) { updateStatus() }
+            sectionsLoaded.observe(viewLifecycleOwner) { updateStatus() }
+        }
+    }
+
+    /**
+     * Update status text based on viewModel loading status:
+     */
+    private fun updateStatus(){
+        binding.apply {
+            viewModel.apply {
+                when (status.value) {
+                    LoadingStatus.SUCCESSFUL -> {
+                        signDetailStatus.text =
+                            "Loading Complete! (Sections: ${sectionsLoaded.value}/$sectionsTotal)"
+                        // If recyclerview is invisible, fade it in:
+                        if (signDetailRecyclerview.visibility != View.VISIBLE) {
+                            signDetailRecyclerview.visibility = View.VISIBLE
+                            val fadeInAnimation =
+                                AnimationUtils.loadAnimation(context, R.anim.fade_in);
+                            signDetailRecyclerview.startAnimation(fadeInAnimation)
                         }
                     }
-                }
-                sectionsLoaded.observe(viewLifecycleOwner) {
-                    text = "Loading... (Sections: $it/$sectionsTotal)"
+                    LoadingStatus.FAILED -> signDetailStatus.text =
+                        "Your horoscope is currently unavailable."
+                    LoadingStatus.LOADING -> signDetailStatus.text =
+                        "Loading... (Sections: ${sectionsLoaded.value}/$sectionsTotal)"
                 }
             }
-
         }
     }
 

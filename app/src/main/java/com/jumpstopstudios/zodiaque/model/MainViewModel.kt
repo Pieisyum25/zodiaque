@@ -15,6 +15,7 @@ class MainViewModel : ViewModel() {
 
     val horoscope: List<Site>
 
+    private var sign: String = ""
     private val _status = MutableLiveData<LoadingStatus>()
     val status: LiveData<LoadingStatus> = _status
     private val _sectionsLoaded = MutableLiveData<Int>()
@@ -88,6 +89,10 @@ class MainViewModel : ViewModel() {
     }
 
     fun generateHoroscope(sign: String) {
+        // Don't generate it if it's already loaded:
+        if (this.sign == sign) return
+        else this.sign = sign
+
         _status.value = LoadingStatus.LOADING
         _sectionsLoaded.value = 0
         var sectionsLoadedSuccessfully = 0
