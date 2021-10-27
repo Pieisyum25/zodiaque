@@ -7,22 +7,22 @@
     <fragment
         android:id="@+id/signListFragment"
         android:name="com.jumpstopstudios.zodiaque.SignListFragment"
-        android:label="SignListFragment" >
+        android:label="@string/app_name">
         <action
             android:id="@+id/action_signListFragment_to_signDetailFragment"
-            app:destination="@id/signDetailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/signDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/signDetailFragment"
         android:name="com.jumpstopstudios.zodiaque.SignDetailFragment"
-        android:label="SignDetailFragment" >
+        android:label="{name}">
         <action
             android:id="@+id/action_signDetailFragment_to_signListFragment"
             app:destination="@id/signListFragment" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="Zodiac" />
         <argument
             android:name="sign"
             app:argType="com.jumpstopstudios.zodiaque.model.Sign" />

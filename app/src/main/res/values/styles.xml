@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Action bar. -->
+    <style name="Theme.Zodiaque.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Zodiaque.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Zodiaque.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Zodiaque.Toolbar">
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:background">?colorPrimaryVariant</item>
+        <item name="android:theme">@style/Theme.Zodiaque.ToolbarText</item>
+<!--        <item name="titleTextAppearance">@style/CustomTitleTextAppearance</item>-->
+<!--        <item name="subtitleTextAppearance">@style/CustomSubTitleTextAppearance</item>-->
+    </style>
+
+    <style name="Theme.Zodiaque.ToolbarText">
+        <!-- Color used for the title of the Toolbar - as long as not overridden -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- Used to color back button and three dots -->
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+<!--    <style name="CustomTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">-->
+<!--        <item name="android:fontFamily">@string/ff_roboto_condensed</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--        <item name="android:textColor">@color/amber_500_primary</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--    </style>-->
+
+<!--    <style name="CustomSubTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">-->
+<!--        <item name="android:fontFamily">@string/ff_roboto_condensed</item>-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--        <item name="android:textColor">@color/pink_500_primary</item>-->
+<!--        <item name="android:textStyle">italic</item>-->
+<!--    </style>-->
+
+
     <style name="glowingIcon">
         <item name="android:tint">?attr/colorSecondaryVariant</item>
     </style>

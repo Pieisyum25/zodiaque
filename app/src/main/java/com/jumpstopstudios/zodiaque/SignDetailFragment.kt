@@ -25,7 +25,7 @@ class SignDetailFragment : Fragment() {
 
     private val args: SignDetailFragmentArgs by navArgs()
 
-    
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,7 +65,6 @@ class SignDetailFragment : Fragment() {
 
         // Init recyclerview:
         binding.signDetailRecyclerview.apply {
-            visibility = View.INVISIBLE
             layoutManager = LinearLayoutManager(context)
             adapter = SiteAdapter(viewModel.horoscope, viewLifecycleOwner)
         }
@@ -80,7 +79,7 @@ class SignDetailFragment : Fragment() {
     }
 
     /**
-     * Update status text based on viewModel loading status:
+     * Update status text and recyclerview visibility based on viewModel loading status:
      */
     private fun updateStatus(){
         binding.apply {
@@ -97,10 +96,14 @@ class SignDetailFragment : Fragment() {
                             signDetailRecyclerview.startAnimation(fadeInAnimation)
                         }
                     }
-                    LoadingStatus.FAILED -> signDetailStatus.text =
-                        "Your horoscope is currently unavailable."
-                    LoadingStatus.LOADING -> signDetailStatus.text =
-                        "Loading... (Sections: ${sectionsLoaded.value}/$sectionsTotal)"
+                    LoadingStatus.FAILED -> {
+                        signDetailRecyclerview.visibility = View.INVISIBLE
+                        signDetailStatus.text = "Your horoscope is currently unavailable."
+                    }
+                    LoadingStatus.LOADING -> {
+                        signDetailRecyclerview.visibility = View.INVISIBLE
+                        signDetailStatus.text = "Loading... (Sections: ${sectionsLoaded.value}/$sectionsTotal)"
+                    }
                 }
             }
         }

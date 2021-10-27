@@ -77,7 +77,7 @@ class SignItemFragment : Fragment() {
 
             // If in centre of screen, navigate to detail fragment:
             if (page.left < screenCentre && page.right > screenCentre){
-                val action = SignListFragmentDirections.actionSignListFragmentToSignDetailFragment(sign!!)
+                val action = SignListFragmentDirections.actionSignListFragmentToSignDetailFragment(sign!!.name, sign!!)
                 view.findNavController().navigate(action)
             }
             // Else, bring it to the centre:
