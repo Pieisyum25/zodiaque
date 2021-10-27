@@ -39,6 +39,9 @@ class SignListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "Started List onViewCreate")
 
+        // Hide collapsing toolbar:
+        (activity as MainActivity).binding.collapsingToolbarContent.visibility = View.GONE
+
         // If orientation is landscape:
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
             binding.signPrompt.visibility = View.GONE // hide sign prompt

@@ -4,26 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <include
-        android:id="@+id/sign_detail_item"
-        layout="@layout/fragment_sign_item"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/sign_detail_status"
-        style="@style/Widget.Zodiaque.TextView.Horoscope.Background"
-        app:layout_constraintBottom_toTopOf="@id/sign_detail_recyclerview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sign_detail_item"
-        tools:text="Loading..." />
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <include
         android:id="@+id/sign_detail_zodiac_circle"
@@ -41,10 +23,11 @@
         android:layout_height="0dp"
         android:background="@null"
         android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sign_detail_status"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/layout_site_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
