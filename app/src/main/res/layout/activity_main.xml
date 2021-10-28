@@ -49,11 +49,19 @@
                 <TextView
                     android:id="@+id/collapsing_toolbar_status"
                     style="@style/Widget.Zodiaque.TextView.Horoscope.Background"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/collapsing_toolbar_item"
                     tools:text="Loading..." />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/collapsing_toolbar_status"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
